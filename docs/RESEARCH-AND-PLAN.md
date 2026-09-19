@@ -302,3 +302,14 @@ Người dùng mở URL GitHub Pages và trong ~30 giây có thể:
 3. **Deploy** lên Pages và tinh chỉnh anchor từng part bằng mắt
 
 Tài liệu này là baseline để bắt đầu code; mapping `parts.js` sẽ được cập nhật sau khi có GLB cụ thể trong repo.
+
+
+## 11. Implementation status
+
+**Shipped on branch `cursor/jesko-car-showcase-3c42`** as **Atelier 458** — vanilla Three.js configurator inspired by Loop Studio Jesko:
+
+- Studio / Gallery environments
+- Paint, details, caliper, glass, leather
+- Body Parts menu (EN + VI) → camera focus + highlight
+- View presets, headlamps, idle wheel spin
+- Ferrari 458 GLB + local Draco; CDN Three.js / camera-controls
