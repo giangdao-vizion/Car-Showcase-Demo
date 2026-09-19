@@ -1,1 +1,106 @@
-TBD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atelier 458 — 3D Configurator</title>
+  <meta name="description" content="Interactive 3D car showcase configurator — paint, inspect parts, studio views." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/showcase.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "camera-controls": "https://cdn.jsdelivr.net/npm/camera-controls@2.9.0/+esm"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <canvas id="viewport"></canvas>
+
+    <div id="loader" class="loader" aria-live="polite">
+      <div class="loader__brand">Atelier 458</div>
+      <div class="loader__bar"><span id="loader-bar"></span></div>
+      <div class="loader__label" id="loader-label">Loading showroom…</div>
+    </div>
+
+    <header class="topbar">
+      <div class="topbar__brand">
+        <span class="topbar__mark">Atelier</span>
+        <span class="topbar__model">458 Italia</span>
+      </div>
+      <div class="topbar__actions">
+        <button type="button" class="ghost-btn" id="btn-reset-cam" title="Reset camera">Reset Cam</button>
+        <button type="button" class="ghost-btn" id="btn-env" title="Toggle environment">Studio</button>
+      </div>
+    </header>
+
+    <aside class="panel panel--left" id="panel-config">
+      <section class="panel__section">
+        <h2 class="panel__title">Exterior Paint</h2>
+        <div class="swatches" id="paint-swatches" role="listbox" aria-label="Body paint"></div>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Details &amp; Trim</h2>
+        <div class="swatches" id="details-swatches" role="listbox" aria-label="Details color"></div>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Brake Caliper</h2>
+        <div class="swatches" id="caliper-swatches" role="listbox" aria-label="Caliper color"></div>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Glass</h2>
+        <div class="swatches" id="glass-swatches" role="listbox" aria-label="Glass tint"></div>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Leather</h2>
+        <div class="swatches" id="leather-swatches" role="listbox" aria-label="Leather color"></div>
+      </section>
+
+      <section class="panel__section panel__section--toggles">
+        <h2 class="panel__title">Lighting</h2>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-headlights" />
+          <span>Headlamps</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-wheels" checked />
+          <span>Idle wheel spin</span>
+        </label>
+      </section>
+    </aside>
+
+    <aside class="panel panel--right" id="panel-parts">
+      <section class="panel__section">
+        <h2 class="panel__title">Camera</h2>
+        <div class="chip-row" id="view-presets"></div>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Body Parts</h2>
+        <p class="panel__hint">Select a component to inspect design detail.</p>
+        <nav class="parts-nav" id="parts-nav"></nav>
+      </section>
+    </aside>
+
+    <footer class="statusbar">
+      <span id="status-part">Hero view</span>
+      <span class="statusbar__credit">Model: Ferrari 458 · three.js · Drag to orbit</span>
+    </footer>
+
+    <button type="button" class="mobile-tab" id="tab-config" aria-controls="panel-config">Configure</button>
+    <button type="button" class="mobile-tab mobile-tab--right" id="tab-parts" aria-controls="panel-parts">Inspect</button>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
